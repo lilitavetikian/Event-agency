@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- saved from url=(0105)http://localhost:63342/pythonProject1/price.html?_ijt=c74u96eemhpqht7bq84iu3beb&_ij_reload=RELOAD_ON_SAVE -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Прайс</title>
+</head>
+<body style="background-color:#ECD4EA; font-family:georgia">
+<h1 style="font-size:300%; font-family:georgia; text-align:center; color:#222222"><a name="start"></a>Inside Out</h1>
+<hr>
+<pre style="text-align:center; font-size:24pt; font-family:georgia">    <a href="http://localhost:63342/pythonProject1/Event-%D0%B0%D0%B3%D0%B5%D0%BD%D1%82%D1%81%D1%82%D0%B2%D0%BE.html?_ijt=f5pvpleosrtnolhsspjg62pvec&amp;_ij_reload=RELOAD_ON_SAVE">Главное</a>  <a href="http://localhost:63342/pythonProject1/about%20us.html?_ijt=7r25vfh7amc5mnp7hsu2lhne1o&amp;_ij_reload=RELOAD_ON_SAVE">О нас</a>  <a href="http://localhost:63342/pythonProject1/our%20events.html?_ijt=m5v35tn2kq4chtj3tficr326co&amp;_ij_reload=RELOAD_ON_SAVE">Наши мероприятия</a>  <a href="http://localhost:63342/pythonProject1/price.html?_ijt=l5gptnkqdh4okh63bm8b1b92oc&amp;_ij_reload=RELOAD_ON_SAVE"><b>Прайс</b></a>  <a href="http://localhost:63342/pythonProject1/application.html?_ijt=l5gptnkqdh4okh63bm8b1b92oc&amp;_ij_reload=RELOAD_ON_SAVE">Запись</a>  <a href="http://localhost:63342/pythonProject1/price.html?_ijt=c74u96eemhpqht7bq84iu3beb&amp;_ij_reload=RELOAD_ON_SAVE#contacts">Контакты</a>
+</pre>
+<hr>
+<p style="font=size:16pt">
+    Вы можете у нас заказывать проведение мероприятия. Это присходит по несколько этапов:
+</p>
+<ol>
+  <li>Заполнение формы на сайте</li>
+  <li>Согласование мероприятия</li>
+  <li>Оплата первой части услуги</li>
+  <li>Проведение мероприятия</li>
+<li>Оплата оставшейся части</li>
+</ol>
+<p>Узнать о наших ценниках можно на следующей картинке:</p>
+<a href="./price_files/price.png" target="_blanket">
+    <img src="./price_files/price.png" alt="Прайс-лист" width="600" height="400" align="center" hspace="15"></a>
+
+
+
+
+
+
+
+
+
+
+<script>
+(function() {
+  var ws = new WebSocket('ws://' + window.location.host + 
+             '/jb-server-page?reloadMode=RELOAD_ON_SAVE&'+
+             'referrer=' + encodeURIComponent(window.location.pathname));
+  ws.onmessage = function (msg) {
+      if (msg.data === 'reload') {
+          window.location.reload();
+      }
+      if (msg.data.startsWith('update-css ')) {
+          var messageId = msg.data.substring(11);
+          var links = document.getElementsByTagName('link');
+          for (var i = 0; i < links.length; i++) {
+              var link = links[i];
+              if (link.rel !== 'stylesheet') continue;
+              var clonedLink = link.cloneNode(true);
+              var newHref = link.href.replace(/(&|\?)jbUpdateLinksId=\d+/, "$1jbUpdateLinksId=" + messageId);
+              if (newHref !== link.href) {
+                clonedLink.href = newHref;
+              }
+              else {
+                var indexOfQuest = newHref.indexOf('?');
+                if (indexOfQuest >= 0) {
+                  // to support ?foo#hash 
+                  clonedLink.href = newHref.substring(0, indexOfQuest + 1) + 'jbUpdateLinksId=' + messageId + '&' + 
+                                    newHref.substring(indexOfQuest + 1);
+                }
+                else {
+                  clonedLink.href += '?' + 'jbUpdateLinksId=' + messageId;
+                }
+              }
+              link.replaceWith(clonedLink);
+          }
+      }
+  };
+})();
+</script></body></html>
